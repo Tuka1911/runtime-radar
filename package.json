@@ -1,0 +1,31 @@
+{
+  "name": "runtime-radar",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local real-time runtime monitoring for Node.js",
+  "workspaces": [
+    "apps/*",
+    "examples/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k \"npm run dev -w @runtime-radar/core\" \"npm run dev -w @runtime-radar/dashboard\"",
+    "build": "npm run build -w @runtime-radar/shared && npm run build -w @runtime-radar/agent && npm run build -w @runtime-radar/core && npm run build -w @runtime-radar/dashboard && npm run build -w @runtime-radar/example",
+    "test": "npm run build -w @runtime-radar/shared && vitest run",
+    "lint": "eslint .",
+    "start": "npm run start -w @runtime-radar/core",
+    "demo": "npm run demo -w @runtime-radar/example"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.15.30",
+    "@types/ws": "^8.18.1",
+    "@typescript-eslint/eslint-plugin": "^8.34.1",
+    "@typescript-eslint/parser": "^8.34.1",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.28.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}
